@@ -1,0 +1,159 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  color: #000;
+}
+
+header {
+  background-color: #000;
+  padding: 10px;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.home-icon, .favorites-icon {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.cart-icon {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #fff;
+}
+
+#search {
+  flex: 1;
+  margin: 0 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+main {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 10px;
+}
+
+h1 {
+  text-align: left;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+}
+
+.product-card {
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  position: relative;
+}
+
+.product-image {
+  position: relative;
+}
+
+.product-image img {
+  width: 100%;
+  height: auto;
+  background-color: #ccc; /* Placeholder color */
+}
+
+.favorite-heart {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.price {
+  font-weight: bold;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.add-to-cart {
+  background-color: #ccc;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #fff;
+}
+
+
+.mobile-nav button {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+
+@media (max-width: 1024px) {
+  .products {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    justify-content: center;
+  }
+  .home-icon, .favorites-icon, .cart-icon {
+    display: none;
+  }
+  #search {
+    width: 100%;
+    margin: 0;
+  }
+  .products {
+    grid-template-columns: 1fr;
+  }
+  .mobile-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #000;
+    color: #fff;
+    justify-content: space-around;
+    padding: 10px;
+  }
+  .mobile-nav button {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
+}
