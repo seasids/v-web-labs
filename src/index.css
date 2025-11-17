@@ -1,0 +1,17 @@
+@import 'tailwindcss';
+
+/* Плавная прокрутка */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Чтобы мобильная навигация не перекрывала контент */
+body {
+  padding-bottom: 80px;
+}
+
+@media (min-width: 768px) {
+  body {
+    padding-bottom: 0;
+  }
+}
