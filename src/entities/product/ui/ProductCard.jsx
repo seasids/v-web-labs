@@ -1,18 +1,8 @@
 import { useState } from 'react';
-import { useCartStore } from '../store/cartStore';
+import { AddToCartButton } from '@/features/add-to-cart';
 
-export default function ProductCard({ title }) {
+export const ProductCard = ({ title = 'Худи с принтом' }) => {
   const [isInCart, setIsInCart] = useState(false);
-  const { addToCart, removeFromCart } = useCartStore();
-
-  const handleCartClick = () => {
-    if (isInCart) {
-      removeFromCart();
-    } else {
-      addToCart();
-    }
-    setIsInCart(!isInCart);
-  };
 
   return (
     <article className='relative rounded-2xl border border-gray-200 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg'>
@@ -23,7 +13,7 @@ export default function ProductCard({ title }) {
           className='h-52 w-full rounded-xl bg-gray-200 object-cover'
         />
         <button className='absolute top-3 right-3 text-3xl transition-transform hover:scale-110'>
-          ♡
+          Heart
         </button>
       </div>
 
@@ -32,14 +22,8 @@ export default function ProductCard({ title }) {
       </p>
       <h2 className='mt-1 text-lg font-medium'>{title}</h2>
 
-      <button
-        onClick={handleCartClick}
-        className={`mt-4 w-full rounded-lg py-3 font-medium transition-all duration-300 ${
-          isInCart ? 'bg-black text-white' : 'bg-gray-300 text-black hover:bg-gray-400'
-        }`}
-      >
-        {isInCart ? 'В корзине' : 'В корзину'}
-      </button>
+      {/* ← Вот сюда вставляем фичу, а не логику */}
+      <AddToCartButton isInCart={isInCart} onToggle={() => setIsInCart((prev) => !prev)} />
     </article>
   );
-}
+};

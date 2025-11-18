@@ -1,13 +1,12 @@
-import { useCartStore } from '../store/cartStore';
+// src/widgets/mobile-nav/ui/MobileNav.jsx
+import { CartCounter } from '@/features/cart-counter';
 
-export default function MobileNav() {
-  const cartCount = useCartStore((s) => s.cartCount);
-
+export const MobileNav = () => {
   return (
     <nav className='fixed right-0 bottom-0 left-0 z-50 bg-black py-3 text-white md:hidden'>
       <div className='flex items-center justify-around'>
         <button className='flex flex-col items-center'>
-          <img src='/icon//home.jpg' alt='Главная' className='h-6 w-6' />
+          <img src='/icon/home.jpg' alt='Главная' className='h-6 w-6' />
           <span className='mt-1 text-xs'>Главная</span>
         </button>
 
@@ -18,14 +17,10 @@ export default function MobileNav() {
 
         <button className='relative flex flex-col items-center'>
           <img src='/icon/cart.jpg' alt='Корзина' className='h-6 w-6' />
-          {cartCount > 0 && (
-            <span className='absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-xs text-white'>
-              {cartCount}
-            </span>
-          )}
+          <CartCounter />
           <span className='mt-1 text-xs'>Корзина</span>
         </button>
       </div>
     </nav>
   );
-}
+};
