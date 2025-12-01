@@ -1,6 +1,11 @@
 import { useCartStore } from '@/shared/lib/CartStore';
 
-export const AddToCartButton = ({ isInCart, onToggle }) => {
+type Props = {
+  isInCart: boolean;
+  onToggle: () => void;
+};
+
+export const AddToCartButton = ({ isInCart, onToggle }: Props) => {
   const { addToCart, removeFromCart } = useCartStore();
 
   const handleClick = () => {

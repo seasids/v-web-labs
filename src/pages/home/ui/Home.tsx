@@ -6,13 +6,17 @@ import { Footer } from '@/widgets/footer';
 import { ProductCard } from '@/entities/product';
 import { SearchInput } from '@/features/search';
 
-const mockHoodies = Array(6).fill({ title: 'Худи с принтом' });
-const mockShorts = Array(6).fill({ title: 'Шорты с принтом' });
+type ProductMock = {
+  title: string;
+};
+
+const mockHoodies: ProductMock[] = Array.from({ length: 6 }, () => ({ title: 'Худи с принтом' }));
+const mockShorts: ProductMock[] = Array.from({ length: 6 }, () => ({ title: 'Шорты с принтом' }));
 
 export const HomePage = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const filterProducts = (products) =>
+  const filterProducts = (products: ProductMock[]): ProductMock[] =>
     products.filter((p) => p.title.toLowerCase().includes(searchQuery.toLowerCase()));
 
   const visibleHoodies = filterProducts(mockHoodies);
@@ -20,6 +24,7 @@ export const HomePage = () => {
 
   return (
     <>
+      
       <Header onSearch={setSearchQuery} />
       <main className='mx-auto max-w-7xl px-4 pb-24 md:pb-8'>
         {/* Поиск только на мобильных (на десктопе он в Header) */}

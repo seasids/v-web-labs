@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import { AddToCartButton } from '@/features/add-to-cart';
 
-export const ProductCard = ({ title = 'Худи с принтом' }) => {
+type Props = {
+  title?: string;
+};
+
+export const ProductCard = ({ title = 'Худи с принтом' }: Props) => {
   const [isInCart, setIsInCart] = useState(false);
 
   return (

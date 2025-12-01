@@ -1,9 +1,14 @@
-import { useState } from 'react';
+import { useState, type ChangeEvent } from 'react';
 
-export const SearchInput = ({ onSearch, className = '' }) => {
+type Props = {
+  onSearch?: (query: string) => void;
+  className?: string;
+};
+
+export const SearchInput = ({ onSearch = () => {}, className = ''}: Props) => {
   const [query, setQuery] = useState('');
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setQuery(value);
     onSearch(value); // передаём наверх (в HomePage)

@@ -1,7 +1,12 @@
 import { SearchInput } from '@/features/search';
 import { CartCounter } from '@/features/cart-counter';
 
-export const Header = ({ onSearch }) => {
+type HeaderProps = {
+  onSearch?: (query: string) => void;
+};
+
+
+export const Header = ({ onSearch }: HeaderProps) => {
   return (
     <header className='sticky top-0 z-50 bg-black py-4 text-white'>
       <div className='mx-auto flex max-w-7xl items-center justify-between px-4'>
