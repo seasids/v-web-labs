@@ -6,19 +6,24 @@ export type Product = {
   category: 'hoodie' | 'shorts';
 };
 
+// Расширяем продукт для корзины
+export type CartItem = Product & {
+  quantity: number;   // Количество товара
+  isSelected: boolean; // Выбрана ли галочка
+};
+
 export type StoreState = {
-  // === Состояние (Data) ===
   products: Product[];
   searchQuery: string;
-  cart: Product[]; // Храним список товаров в корзине, чтобы считать сумму и количество
+  cart: CartItem[]; // Теперь храним CartItem, а не Product
 
-  // === Действия (Actions) ===
-  // Установить строку поиска (для глобального поиска)
   setSearchQuery: (query: string) => void;
-  
-  // Добавить товар в корзину
   addToCart: (product: Product) => void;
-  
-  // Удалить товар из корзины по ID
   removeFromCart: (productId: number) => void;
+  
+  // Новые действия для корзины
+  toggleItemSelection: (id: number) => void;
+  toggleAllSelection: (isSelected: boolean) => void;
+  updateQuantity: (id: number, delta: number) => void; // delta может быть +1 или -1
+  removeSelectedItems: () => void;
 };

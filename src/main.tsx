@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HomePage } from '@/pages/home';
+import { CartPage } from '@/pages/cart'; // Импортируем новую страницу
 import { StoreProvider, type Product } from '@/shared/store';
 import './index.css';
 
@@ -10,7 +12,7 @@ if (!rootElement) {
   throw new Error('Failed to find the root element. Check index.html');
 }
 
-// Генерируем данные для глобального стора с правильными ID и категориями
+// Данные (оставляем как было)
 const initialProducts: Product[] = [
   ...Array.from({ length: 6 }).map((_, i) => ({
     id: i + 1,
@@ -29,9 +31,13 @@ const initialProducts: Product[] = [
 
 ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
-    {/* Инициализируем провайдер с начальными продуктами */}
     <StoreProvider initialState={{ products: initialProducts }}>
-      <HomePage />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/cart" element={<CartPage />} />
+        </Routes>
+      </BrowserRouter>
     </StoreProvider>
   </React.StrictMode>,
 );
