@@ -1,20 +1,24 @@
-import { useCartStore } from '@/shared/lib/CartStore';
+import { useAppStore, type Product } from '@/shared/store';
 
 type Props = {
-  isInCart: boolean;
-  onToggle: () => void;
+  product: Product; // Кнопке нужен весь товар, чтобы положить его в стор
 };
 
-export const AddToCartButton = ({ isInCart, onToggle }: Props) => {
-  const { addToCart, removeFromCart } = useCartStore();
+export const AddToCartButton = ({ product }: Props) => {
+  // Селектор: проверяем наличие товара в массиве cart по ID
+  const isInCart = useAppStore((state) => 
+    state.cart.some((p) => p.id === product.id)
+  );
+
+  const addToCart = useAppStore((state) => state.addToCart);
+  const removeFromCart = useAppStore((state) => state.removeFromCart);
 
   const handleClick = () => {
     if (isInCart) {
-      removeFromCart();
+      removeFromCart(product.id);
     } else {
-      addToCart();
+      addToCart(product);
     }
-    onToggle();
   };
 
   return (
